@@ -16,11 +16,11 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"turniplabs.examplemod.ExampleMod"
+			"varianttombstones.theswitch.TheSwitch"
 		]
 	},
 	"mixins": [
-		"examplemod.mixins.json"
+		"theswitch.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=${fabricloader}",
