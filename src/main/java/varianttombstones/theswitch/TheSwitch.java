@@ -28,7 +28,7 @@ public class TheSwitch implements ModInitializer {
 	}
 
 	public void beforeGameStart() {
-		THE_SWITCH_BIOME = Biomes.register("theswitch.overworld.theswitch", new TheSwitchBiome("overworld.theswitch")
+		THE_SWITCH_BIOME = Biomes.register("theswitch:overworld.theswitch", new TheSwitchBiome("overworld.theswitch")
 			.withDebugColor(11184810).withPlacementDefaults(0.575F, 0.125F, 0.1F)
 			.withTags(BiomeTags.HAS_SURFACE_WATER)
 		);
