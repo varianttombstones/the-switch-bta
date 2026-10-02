@@ -1,8 +1,16 @@
 package varianttombstones.theswitch.world.biome;
 
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.world.biome.Biome;
+import net.minecraft.core.world.biome.SurfaceProperties;
+import net.minecraft.core.world.generate.feature.WorldFeature;
+import net.minecraft.core.world.generate.feature.tree.WorldFeatureTree;
+import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeTall;
 import net.minecraft.core.world.weather.Weather;
 import net.minecraft.core.world.weather.Weathers;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Random;
 
 public class TheSwitchBiome extends Biome {
 	public TheSwitchBiome(String key)
@@ -13,6 +21,13 @@ public class TheSwitchBiome extends Biome {
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableAmbientCreatureList.clear();
 
+
+		this.withSurfaceProperties(new SurfaceProperties.Builder()
+			.withTopBlock(Blocks.BLOCK_ASH)
+			.withFillerBlock(Blocks.BASALT)
+			.build()
+		);
+
 		for (Weather weather : Weathers.WEATHERS)
 		{
 			if (weather != Weathers.OVERWORLD_RAIN_BLOOD)
@@ -21,5 +36,17 @@ public class TheSwitchBiome extends Biome {
 				this.blockedWeathers.add(weather);
 			}
 		}
+	}
+
+	@Override
+	public int getSkyColor(float temperature) {
+		return SKY_COLOR;
+	}
+
+	private static final int SKY_COLOR = 0xACADC2;
+
+	@Override
+	public @NotNull WorldFeature getTreeFeature(@NotNull Random random) {
+		return random.nextInt(10) == 0 ? new WorldFeatureTreeTall(Blocks.LEAVES_THORN.id(), Blocks.LOG_THORN.id()) : new WorldFeatureTree(Blocks.LEAVES_THORN.id(), Blocks.LOG_THORN.id(), 20);
 	}
 }
