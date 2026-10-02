@@ -23,7 +23,7 @@ public class TheSwitchBiome extends Biome {
 
 
 		this.withSurfaceProperties(new SurfaceProperties.Builder()
-			.withTopBlock(Blocks.BLOCK_ASH)
+			.withTopBlock(Blocks.GRASS)
 			.withFillerBlock(Blocks.BASALT)
 			.build()
 		);
@@ -47,6 +47,6 @@ public class TheSwitchBiome extends Biome {
 
 	@Override
 	public @NotNull WorldFeature getTreeFeature(@NotNull Random random) {
-		return random.nextInt(10) == 0 ? new WorldFeatureTreeTall(Blocks.LEAVES_THORN.id(), Blocks.LOG_THORN.id()) : new WorldFeatureTree(Blocks.LEAVES_THORN.id(), Blocks.LOG_THORN.id(), 20);
+		return random.nextInt(10) == 0 ? new WorldFeatureTreeTall(Blocks.LEAVES_THORN.id(), Blocks.LOG_THORN.id()) : new WorldFeatureTree(Blocks.LEAVES_THORN.id(), Blocks.LOG_THORN.id(), 8);
 	}
 }

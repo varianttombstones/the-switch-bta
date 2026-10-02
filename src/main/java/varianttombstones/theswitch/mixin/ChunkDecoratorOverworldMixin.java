@@ -10,26 +10,26 @@ import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import varianttombstones.theswitch.TheSwitch;
 
 @Mixin(ChunkDecoratorOverworld.class)
 public class ChunkDecoratorOverworldMixin {
-	@Inject(
+	@ModifyVariable(
 		method = "decorate",
-		at =  @At(
-			value = "INVOKE",
-			target = "Ljava/util/Random;nextInt(I)I",
-			ordinal = 58
-			//shift = At.Shift.AFTER
-		)
+		at =  @At("STORE"),
+		name = "treeDensity"
 	)
-	public void injectTrees(Chunk chunk, CallbackInfo ci,
-							@Local(name="biome") Biome biome,
-							@Local(name="treeDensity") int treeDensity,
-							@Local(name="k4") int k4) {
+	private int modifySwitchBiomeTreeDensity(
+		int treeDensity,
+		@Local(name="biome") Biome biome,
+		@Local(name="k4") int k4)
+	{
 		if (biome == TheSwitch.THE_SWITCH_BIOME) {
-			treeDensity += k4 + 4;
+			treeDensity += k4 + 25;
 		}
+
+		return treeDensity;
 	}
 }

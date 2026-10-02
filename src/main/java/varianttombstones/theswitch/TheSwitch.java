@@ -32,8 +32,6 @@ public class TheSwitch implements ModInitializer {
 			.withDebugColor(11184810).withPlacementDefaults(0.8F, 0.5F, 1.0F) // Change variety in future
 			.withTags(BiomeTags.HAS_SURFACE_WATER)
 		);
-
-
 	}
 
 	public void afterGameStart() {
