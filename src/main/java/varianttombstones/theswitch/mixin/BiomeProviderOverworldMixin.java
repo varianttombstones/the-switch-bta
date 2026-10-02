@@ -33,7 +33,7 @@ public abstract class BiomeProviderOverworldMixin extends BiomeProvider {
 		)
 	)
 	private static void init(CallbackInfo ci) {
-		brm.addRange(TheSwitch.THE_SWITCH_BIOME, new BiomeRange((double)0.5F, 1.5F, (double)0.15F, 0.5, (double)0.0F, (double)1.0F, (double)0.0F, (double)1.0F));
+		brm.addRange(TheSwitch.THE_SWITCH_BIOME, new BiomeRange((double)0.5F, 1.5F, (double)0.05F, 0.1, (double)0.0F, (double)1.0F, (double)0.0F, (double)1.0F));
 	}
 }
 
