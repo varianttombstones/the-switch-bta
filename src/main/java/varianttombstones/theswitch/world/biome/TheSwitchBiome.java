@@ -9,6 +9,7 @@ import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeTall;
 import net.minecraft.core.world.weather.Weather;
 import net.minecraft.core.world.weather.Weathers;
 import org.jetbrains.annotations.NotNull;
+import varianttombstones.theswitch.block.ModBlocks;
 
 import java.util.Random;
 
@@ -21,10 +22,9 @@ public class TheSwitchBiome extends Biome {
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableAmbientCreatureList.clear();
 
-
 		this.withSurfaceProperties(new SurfaceProperties.Builder()
-			.withTopBlock(Blocks.GRASS)
-			.withFillerBlock(Blocks.BASALT)
+			.withTopBlock(ModBlocks.LIVING_GRASS)
+			.withFillerBlock(ModBlocks.LIVING_DIRT)
 			.build()
 		);
 

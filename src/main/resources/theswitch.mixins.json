@@ -9,5 +9,8 @@
     "BiomeProviderOverworldMixin",
     "ChunkDecoratorOverworldMixin"
   ],
-  "client": []
+  "client": [
+    "FogManagerMixin",
+    "WorldRendererMixin"
+  ]
 }

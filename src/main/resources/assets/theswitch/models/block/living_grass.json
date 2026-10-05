@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "theswitch:block/living_grass/living_grass_top",
+    "bottom": "theswitch:block/living_dirt",
+    "side": "theswitch:block/living_grass/living_grass_side"
+  }
+}

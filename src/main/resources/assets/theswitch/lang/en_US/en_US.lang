@@ -1,1 +1,7 @@
 biome.overworld.theswitch=The Switch
+
+tile.theswitch.livingdirt.name=Living Dirt
+tile.theswitch.livingdirt.desc=It pulses under your feet and you can feel it beating.
+
+tile.theswitch.livinggrass.name=Living Grass
+tile.theswitch.livinggrass.desc=It pulses under your feet and you can feel it beating.
