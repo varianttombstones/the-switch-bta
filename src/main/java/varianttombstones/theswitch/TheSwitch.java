@@ -2,6 +2,7 @@ package varianttombstones.theswitch;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.render.block.model.BlockModelDispatcher;
+import net.minecraft.core.sound.SoundTypes;
 import net.minecraft.core.world.biome.Biome;
 import net.minecraft.core.world.biome.BiomeTags;
 import net.minecraft.core.world.biome.Biomes;
@@ -46,6 +47,8 @@ public class TheSwitch implements ModInitializer {
 			.withDebugColor(11184810).withPlacementDefaults(0.625F, 0.25F, .5F) // Change variety in future
 			.withTags(BiomeTags.HAS_SURFACE_WATER)
 		);
+
+		SoundTypes.loadSoundsJson(MOD_ID);
 	}
 
 	public void afterGameStart() {

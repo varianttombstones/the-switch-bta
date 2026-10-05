@@ -1,0 +1,11 @@
+{
+  "ambient.weather.bloodrain": {
+    "subtitle": "subtitles.ambient.weather.bloodrain",
+    "sounds": [
+      "ambient/weather/rain1.ogg",
+      "ambient/weather/rain2.ogg",
+      "ambient/weather/rain3.ogg",
+      "ambient/weather/rain4.ogg"
+    ]
+  }
+}
