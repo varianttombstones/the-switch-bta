@@ -1,7 +1,6 @@
 package varianttombstones.theswitch.block;
 
-import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockLogic;
+import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.sound.BlockSounds;
@@ -15,6 +14,9 @@ public class ModBlocks {
 
 	public static Block<?> LIVING_DIRT;
 	public static Block<?> LIVING_GRASS;
+	public static Block<?> HAUNTED_LOG;
+	public static Block<?> SEEING_LOG;
+	public static Block<?> HAUNTED_LEAVES;
 
 	public static void InitBlocks() {
 		LIVING_DIRT = new BlockBuilder(TheSwitch.MOD_ID)
@@ -32,6 +34,30 @@ public class ModBlocks {
 			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.GROWS_TREES)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
 			.build("livinggrass", newBlockID(), b -> new BlockLogic(b, Materials.GRASS));
+
+		HAUNTED_LOG = new BlockBuilder(TheSwitch.MOD_ID)
+			.setResistance(2f)
+			.setHardness(2f)
+			.setBlockSound(BlockSounds.WOOD)
+			.setTags(BlockTags.MINEABLE_BY_AXE)
+			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
+			.build("hauntedlog", newBlockID(), b -> new BlockLogicLog(b));
+
+		SEEING_LOG = new BlockBuilder(TheSwitch.MOD_ID)
+			.setResistance(2f)
+			.setHardness(2f)
+			.setBlockSound(BlockSounds.WOOD)
+			.setTags(BlockTags.MINEABLE_BY_AXE)
+			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
+			.build("seeinglog", newBlockID(), b -> new BlockLogicLog(b));
+
+		HAUNTED_LEAVES = new BlockBuilder(TheSwitch.MOD_ID)
+			.setResistance(0.2f)
+			.setHardness(0.2f)
+			.setBlockSound(BlockSounds.GRASS)
+			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_HOE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS, BlockTags.SHEARS_DO_SILK_TOUCH)
+			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
+			.build("hauntedleaves", newBlockID(), b -> new BlockLogicLeavesBase(b, Materials.LEAVES, Blocks.SAPLING_OAK)); // TODO: REPLACE SAPLING
 
 	}
 

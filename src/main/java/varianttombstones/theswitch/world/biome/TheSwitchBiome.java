@@ -47,6 +47,6 @@ public class TheSwitchBiome extends Biome {
 
 	@Override
 	public @NotNull WorldFeature getTreeFeature(@NotNull Random random) {
-		return random.nextInt(10) == 0 ? new WorldFeatureTreeTall(Blocks.LEAVES_THORN.id(), Blocks.LOG_THORN.id()) : new WorldFeatureTree(Blocks.LEAVES_THORN.id(), Blocks.LOG_THORN.id(), 8);
+		return random.nextInt(10) == 0 ? new WorldFeatureTreeTall(ModBlocks.HAUNTED_LEAVES.id(), ModBlocks.HAUNTED_LOG.id()) : new WorldFeatureTreeHaunted(ModBlocks.HAUNTED_LEAVES.id(), ModBlocks.HAUNTED_LOG.id(), 5);
 	}
 }

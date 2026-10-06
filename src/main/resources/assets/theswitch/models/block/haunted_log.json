@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "theswitch:block/haunted_log/haunted_log_top",
+    "bottom": "theswitch:block/haunted_log/haunted_log_top",
+    "side": "theswitch:block/haunted_log/haunted_log_side"
+  }
+}
