@@ -18,6 +18,7 @@ public class ModBlocks {
 	public static Block<?> SEEING_LOG;
 	public static Block<?> HAUNTED_LEAVES;
 	public static Block<?> FLESH;
+	public static Block<?> HEART_FLESH;
 
 	public static void InitBlocks() {
 		LIVING_DIRT = new BlockBuilder(TheSwitch.MOD_ID)
@@ -67,6 +68,14 @@ public class ModBlocks {
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
 			.build("flesh", newBlockID(), b -> new BlockLogic(b, Materials.DIRT));
+
+		HEART_FLESH = new BlockBuilder(TheSwitch.MOD_ID)
+			.setResistance(6f)
+			.setHardness(1.5f)
+			.setBlockSound(BlockSounds.GRAVEL)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
+			.build("heartflesh", newBlockID(), b -> new BlockLogic(b, Materials.DIRT));
 	}
 
 	public static int newBlockID() {

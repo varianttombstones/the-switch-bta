@@ -15,5 +15,6 @@ public class BlockRenderer {
 		dispatcher.addDispatch(new BlockModelGenericAxis<>(ModBlocks.SEEING_LOG, BlockModelDispatcher.loadDataModel("theswitch:block/seeing_log")));
 		dispatcher.addDispatch(new BlockModelGenericLeaves<>(ModBlocks.HAUNTED_LEAVES, "theswitch:block/haunted_leaves"));
 		dispatcher.addDispatch(new BlockModelGeneric<>(ModBlocks.FLESH, BlockModelDispatcher.loadDataModel("theswitch:block/flesh")));
+		dispatcher.addDispatch(new BlockModelGeneric<>(ModBlocks.HEART_FLESH, BlockModelDispatcher.loadDataModel("theswitch:block/heart_flesh")));
 	}
 }
