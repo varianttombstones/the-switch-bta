@@ -1,22 +1,27 @@
 package varianttombstones.theswitch;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.render.EntityRendererDispatcher;
 import net.minecraft.client.render.block.model.BlockModelDispatcher;
+import net.minecraft.client.render.particle.ParticleDispatcher;
+import net.minecraft.client.render.particle.ParticleEntry;
+import net.minecraft.client.render.particle.ParticleFluidDrip;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
+import net.minecraft.core.entity.EntityDispatcher;
 import net.minecraft.core.sound.SoundTypes;
 import net.minecraft.core.world.biome.Biome;
 import net.minecraft.core.world.biome.BiomeTags;
 import net.minecraft.core.world.biome.Biomes;
-import net.minecraft.core.world.weather.Weather;
-import net.minecraft.core.world.weather.Weathers;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.HalpLibe;
 import turniplabs.halplibe.event.defs.ClientEvents;
 import turniplabs.halplibe.event.defs.CommonEvents;
 import turniplabs.halplibe.util.dependency.Key;
-import varianttombstones.theswitch.block.BlockRenderer;
+import varianttombstones.theswitch.block.ModBlockRenderer;
 import varianttombstones.theswitch.block.ModBlocks;
+import varianttombstones.theswitch.entity.ModEntities;
+import varianttombstones.theswitch.entity.ModEntityRenderer;
 import varianttombstones.theswitch.world.biome.TheSwitchBiome;
 
 public class TheSwitch implements ModInitializer {
@@ -35,7 +40,11 @@ public class TheSwitch implements ModInitializer {
 		*/
 		if (HalpLibe.isClient)
 		{
-			ClientEvents.BLOCK_MODEL_RELOAD.listen(Key.of(MOD_ID),(t)-> BlockRenderer.RegisterRenderers(BlockModelDispatcher.getInstance()));
+			ClientEvents.BLOCK_MODEL_RELOAD.listen(Key.of(MOD_ID),(t)-> ModBlockRenderer.RegisterRenderers(BlockModelDispatcher.getInstance()));
+			ClientEvents.ENTITY_RENDERER_RELOAD.listen(Key.of(MOD_ID), ModEntityRenderer::RegisterRenderers);
+			ParticleDispatcher.getInstance().addDispatch("dripBlood", (world, x, y, z, motionX, motionY, motionZ, data) -> {
+			return new ParticleFluidDrip(world, x, y, z, 0xFF0000, TextureRegistry.getTexture("theswitch:block/blood/flowing"));
+		});
 		}
 
 		LOGGER.info("The Switch initialized.");
@@ -43,6 +52,7 @@ public class TheSwitch implements ModInitializer {
 
 	public void beforeGameStart() {
 		ModBlocks.InitBlocks();
+		ModEntities.InitEnemies(EntityDispatcher.getInstance());
 		THE_SWITCH_BIOME = Biomes.register("theswitch:overworld.theswitch", new TheSwitchBiome("overworld.theswitch")
 			.withDebugColor(11184810).withPlacementDefaults(0.625F, 0.25F, .5F) // Change variety in future
 			.withTags(BiomeTags.HAS_SURFACE_WATER)

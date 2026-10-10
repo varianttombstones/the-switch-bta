@@ -20,8 +20,6 @@ import java.util.Random;
 
 @Mixin(SurfaceGeneratorOverworld.class)
 public class SurfaceGeneratorOverworldMixin {
-
-
 	@Inject(
 		method = "generateSurface",
 		at = @At(

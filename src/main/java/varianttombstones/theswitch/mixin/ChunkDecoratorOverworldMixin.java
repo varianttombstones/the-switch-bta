@@ -9,6 +9,8 @@ import net.minecraft.core.world.chunk.Chunk;
 import net.minecraft.core.world.generate.chunk.ChunkDecorator;
 import net.minecraft.core.world.generate.chunk.perlin.overworld.ChunkDecoratorOverworld;
 import net.minecraft.core.world.generate.feature.WorldFeatureDungeon;
+import net.minecraft.core.world.generate.feature.WorldFeatureOre;
+import net.minecraft.core.world.pos.TilePos;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import varianttombstones.theswitch.TheSwitch;
+import varianttombstones.theswitch.block.ModBlocks;
 import varianttombstones.theswitch.world.feature.WorldFeatureHeart;
 
 import java.util.Random;
@@ -68,6 +71,14 @@ public class ChunkDecoratorOverworldMixin {
 				int k8 = minY + rand.nextInt(rangeY);
 				int j11 = z + rand.nextInt(16) + 8;
 				new WorldFeatureHeart().place(this.world, rand, j5, k8, j11);
+			}
+
+			for(int k1 = 0; (float)k1 < 8.0F * oreHeightModifier; ++k1) {
+				int j5 = x + rand.nextInt(16) + 8;
+				int k8 = minY + rand.nextInt(rangeY);
+				int j11 = z + rand.nextInt(16) + 8;
+				TilePos queryPos = new TilePos(j5, k8, j11);
+				new WorldFeatureOre(ModBlocks.FLESH.id(), 32).place(this.world, rand, queryPos);
 			}
 		}
 	}

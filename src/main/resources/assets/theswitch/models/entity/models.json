@@ -1,0 +1,11 @@
+{
+    "model_paths": [
+        "/assets/theswitch/models/entity/psychoticpig/psychoticpig.geo.json"
+    ],
+    "renderers": {
+        "theswitch:psychoticpig": {
+            "main":"geometry.pig",
+            "saddle":{"model":"geometry.pig", "inflation": 0.5}
+        }
+    }
+}

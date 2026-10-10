@@ -8,6 +8,7 @@ import turniplabs.halplibe.helper.BlockBuilder;
 import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryCategory;
 import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryPlacement;
 import varianttombstones.theswitch.TheSwitch;
+import varianttombstones.theswitch.block.logic.BlockLogicFlesh;
 
 public class ModBlocks {
 	private static int BLOCK_ID = 2344; // REPLACE ME TO NOT CONFLICT WITH BWF
@@ -67,7 +68,7 @@ public class ModBlocks {
 			.setBlockSound(BlockSounds.GRAVEL)
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
-			.build("flesh", newBlockID(), b -> new BlockLogic(b, Materials.DIRT));
+			.build("flesh", newBlockID(), b -> new BlockLogicFlesh(b, Materials.DIRT));
 
 		HEART_FLESH = new BlockBuilder(TheSwitch.MOD_ID)
 			.setResistance(6f)

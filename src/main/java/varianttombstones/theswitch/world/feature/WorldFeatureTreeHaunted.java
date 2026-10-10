@@ -1,4 +1,4 @@
-package varianttombstones.theswitch.world.biome;
+package varianttombstones.theswitch.world.feature;
 
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.tag.BlockTags;

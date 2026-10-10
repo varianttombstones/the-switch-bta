@@ -8,7 +8,10 @@
   "mixins": [
     "BiomeProviderOverworldMixin",
     "ChunkDecoratorOverworldMixin",
-    "SurfaceGeneratorOverworldMixin"
+    "SurfaceGeneratorOverworldMixin",
+    "WorldFeatureOreMixin",
+    "entity.MobPigMixin",
+    "entity.MobWolfMixin"
   ],
   "client": [
     "FogManagerMixin",
