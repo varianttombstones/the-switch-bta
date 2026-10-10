@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import varianttombstones.theswitch.TheSwitch;
 import varianttombstones.theswitch.block.ModBlocks;
+import varianttombstones.theswitch.world.feature.WorldFeatureCrucifix;
 import varianttombstones.theswitch.world.feature.WorldFeatureHeart;
 
 import java.util.Random;
@@ -66,6 +67,13 @@ public class ChunkDecoratorOverworldMixin {
 	)
 	{
 		if (biome == TheSwitch.THE_SWITCH_BIOME) {
+			for(int crucifixAttempts = 0; (float)crucifixAttempts < 100; ++crucifixAttempts) {
+				int xPos = x + rand.nextInt(16) + 8;
+				int yPos = minY + rand.nextInt(rangeY);
+				int zPos = z + rand.nextInt(16) + 8;
+				new WorldFeatureCrucifix().place(this.world, rand, xPos, yPos, zPos);
+			}
+
 			for(int k1 = 0; (float)k1 < 8.0F * oreHeightModifier; ++k1) {
 				int j5 = x + rand.nextInt(16) + 8;
 				int k8 = minY + rand.nextInt(rangeY);
