@@ -3,7 +3,9 @@ package varianttombstones.theswitch.block;
 import net.minecraft.client.render.block.model.BlockModelDispatcher;
 import net.minecraft.client.render.block.model.generic.BlockModelGeneric;
 import net.minecraft.client.render.block.model.generic.BlockModelGenericAxis;
+import net.minecraft.client.render.block.model.generic.BlockModelGenericFlowerStackable;
 import net.minecraft.client.render.block.model.generic.BlockModelGenericLeaves;
+import net.minecraft.core.block.Blocks;
 
 public class ModBlockRenderer {
 	public static void RegisterRenderers(BlockModelDispatcher dispatcher)
@@ -15,5 +17,6 @@ public class ModBlockRenderer {
 		dispatcher.addDispatch(new BlockModelGenericLeaves<>(ModBlocks.HAUNTED_LEAVES, "theswitch:block/haunted_leaves"));
 		dispatcher.addDispatch(new BlockModelGeneric<>(ModBlocks.FLESH, BlockModelDispatcher.loadDataModel("theswitch:block/flesh")));
 		dispatcher.addDispatch(new BlockModelGeneric<>(ModBlocks.HEART_FLESH, BlockModelDispatcher.loadDataModel("theswitch:block/heart_flesh")));
+		dispatcher.addDispatch((new BlockModelGenericFlowerStackable(ModBlocks.DEAD_FLOWERS, "theswitch:block/dead_flowers/")).render3D(false));
 	}
 }

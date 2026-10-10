@@ -20,6 +20,7 @@ public class ModBlocks {
 	public static Block<?> HAUNTED_LEAVES;
 	public static Block<?> FLESH;
 	public static Block<?> HEART_FLESH;
+	public static Block<?> DEAD_FLOWERS;
 
 	public static void InitBlocks() {
 		LIVING_DIRT = new BlockBuilder(TheSwitch.MOD_ID)
@@ -77,6 +78,13 @@ public class ModBlocks {
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
 			.build("heartflesh", newBlockID(), b -> new BlockLogic(b, Materials.DIRT));
+
+		DEAD_FLOWERS = new BlockBuilder(TheSwitch.MOD_ID)
+			.setResistance(0f)
+			.setHardness(0f)
+			.setBlockSound(BlockSounds.GRASS)
+			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
+			.build("deadflowers", newBlockID(), b -> new BlockLogicFlowerStackable(b));
 	}
 
 	public static int newBlockID() {

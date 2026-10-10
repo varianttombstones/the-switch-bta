@@ -67,6 +67,8 @@ public class ChunkDecoratorOverworldMixin {
 	)
 	{
 		if (biome == TheSwitch.THE_SWITCH_BIOME) {
+			// Keep testing the spawns for this and see if its causing performance issues somehow.
+			// NEED TO ADD FLOWER SPAWNS
 			for(int crucifixAttempts = 0; (float)crucifixAttempts < 100; ++crucifixAttempts) {
 				int xPos = x + rand.nextInt(16) + 8;
 				int yPos = minY + rand.nextInt(rangeY);
