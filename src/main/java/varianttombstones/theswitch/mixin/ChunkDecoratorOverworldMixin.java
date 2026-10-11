@@ -9,6 +9,7 @@ import net.minecraft.core.world.chunk.Chunk;
 import net.minecraft.core.world.generate.chunk.ChunkDecorator;
 import net.minecraft.core.world.generate.chunk.perlin.overworld.ChunkDecoratorOverworld;
 import net.minecraft.core.world.generate.feature.WorldFeatureDungeon;
+import net.minecraft.core.world.generate.feature.WorldFeatureFlowers;
 import net.minecraft.core.world.generate.feature.WorldFeatureOre;
 import net.minecraft.core.world.pos.TilePos;
 import org.jetbrains.annotations.NotNull;
@@ -67,12 +68,20 @@ public class ChunkDecoratorOverworldMixin {
 	)
 	{
 		if (biome == TheSwitch.THE_SWITCH_BIOME) {
-			// Keep testing the spawns for this and see if its causing performance issues somehow.
-			// NEED TO ADD FLOWER SPAWNS
-			for(int crucifixAttempts = 0; (float)crucifixAttempts < 100; ++crucifixAttempts) {
+			int deadFlowersAttempts = 2;
+			for(int attempt = 0; attempt < deadFlowersAttempts; ++attempt) {
 				int xPos = x + rand.nextInt(16) + 8;
 				int yPos = minY + rand.nextInt(rangeY);
 				int zPos = z + rand.nextInt(16) + 8;
+				(new WorldFeatureFlowers(ModBlocks.DEAD_FLOWERS.id(), 64, true)).place(this.world, rand, xPos, yPos, zPos);
+			}
+
+			// Keep testing the spawns for this and see if its causing performance issues somehow.
+			// NEED TO ADD FLOWER SPAWNS
+			if (rand.nextInt(500) == 1) {
+				int xPos = x + rand.nextInt(16) + 8;
+				int zPos = z + rand.nextInt(16) + 8;
+				int yPos = this.world.getHeightValue(xPos, zPos);
 				new WorldFeatureCrucifix().place(this.world, rand, xPos, yPos, zPos);
 			}
 
