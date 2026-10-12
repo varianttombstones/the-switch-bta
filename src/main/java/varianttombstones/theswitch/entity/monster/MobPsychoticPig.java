@@ -82,6 +82,17 @@ public class MobPsychoticPig extends MobMonster {
 		} else {
 			super.attackEntity(entity, distance);
 		}
+	}
 
+	public String getLivingSound() {
+		return "mob.pig";
+	}
+
+	protected String getHurtSound() {
+		return "mob.pig";
+	}
+
+	protected String getDeathSound() {
+		return "mob.pigdeath";
 	}
 }

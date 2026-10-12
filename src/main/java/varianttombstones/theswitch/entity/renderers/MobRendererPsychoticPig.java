@@ -16,7 +16,7 @@ public class MobRendererPsychoticPig extends MobRendererQuadruped<MobPsychoticPi
 	protected void renderSpecials(@NotNull TessellatorGeneral tessellator, @NotNull MobPsychoticPig entity, double x, double y, double z) {
 		super.renderSpecials(tessellator, entity, x, y, z);
 	}
-
+	
 	public MobRendererPsychoticPig(float shadowSize) {
 		super(shadowSize);
 	}
