@@ -1,9 +1,11 @@
 package varianttombstones.theswitch.world.feature;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.generate.feature.WorldFeature;
+import net.minecraft.core.world.pos.TilePos;
 import net.minecraft.core.world.pos.TilePosc;
 import varianttombstones.theswitch.block.ModBlocks;
 
@@ -74,15 +76,78 @@ public class WorldFeatureHeart extends WorldFeature {
 		int lengthQuarter = length / 4;
 		int heightQuarter = height / 4;
 
+		int startHeight = heightQuarter;
+		Random random = new Random();
+
+		if (random.nextBoolean())
+		{
+			startHeight = 0;
+		} else {
+			startHeight = height / 2;
+		}
+
+		int endHeight = startHeight + (height / 2);
+
+		TilePos root = new TilePos(widthQuarter, startHeight, lengthQuarter);
+
 		for (int positionX = widthQuarter; positionX <= (width / 2) + widthQuarter; positionX++)
 		{
 			for (int positionZ = lengthQuarter; positionZ <= (length / 2) + lengthQuarter; positionZ++)
 			{
-				for (int positionY = heightQuarter; positionY <= (height / 2) + heightQuarter ; positionY++)
+				for (int positionY = startHeight; positionY <= endHeight; positionY++)
 				{
-					world.setBlockWithNotify(x + positionX, y + positionY, z + positionZ, ModBlocks.HEART_FLESH.id());
+					TilePos tilePos = new TilePos(positionX, positionY, positionZ);
+					if (!isHeartCorner(tilePos, width / 2, length / 2,
+						height / 2, root)) {
+						world.setBlockWithNotify(x + positionX, y + positionY, z + positionZ, ModBlocks.HEART_FLESH.id());
+					}
 				}
 			}
 		}
+	}
+
+	private boolean isHeartCorner(TilePos tilePos, int width, int length, int height, TilePos root)
+	{
+		if (tilePos.x == root.x && tilePos.y == root.y && tilePos.z == root.z)
+		{
+			return true;
+		}
+
+		if (tilePos.x == root.x + width && tilePos.y == root.y + height && tilePos.z == root.z + length)
+		{
+			return true;
+		}
+
+		if (tilePos.x == root.x && tilePos.y == root.y && tilePos.z == root.z + length)
+		{
+			return true;
+		}
+
+		if (tilePos.x == root.x && tilePos.y == root.y + height && tilePos.z == root.z)
+		{
+			return true;
+		}
+
+		if (tilePos.x == root.x + width && tilePos.y == root.y && tilePos.z == root.z)
+		{
+			return true;
+		}
+
+		if (tilePos.x == root.x + width && tilePos.y == root.y + height && tilePos.z == root.z)
+		{
+			return true;
+		}
+
+		if (tilePos.x == root.x + width && tilePos.y == root.y && tilePos.z == root.z + length)
+		{
+			return true;
+		}
+
+		if (tilePos.x == root.x && tilePos.y == root.y + height && tilePos.z == root.z + length)
+		{
+			return true;
+		}
+
+		return false;
 	}
 }
