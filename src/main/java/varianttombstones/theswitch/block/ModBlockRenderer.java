@@ -18,5 +18,6 @@ public class ModBlockRenderer {
 		dispatcher.addDispatch(new BlockModelGeneric<>(ModBlocks.FLESH, BlockModelDispatcher.loadDataModel("theswitch:block/flesh")));
 		dispatcher.addDispatch(new BlockModelGeneric<>(ModBlocks.HEART_FLESH, BlockModelDispatcher.loadDataModel("theswitch:block/heart_flesh")));
 		dispatcher.addDispatch((new BlockModelGenericFlowerStackable(ModBlocks.DEAD_FLOWERS, "theswitch:block/dead_flowers/")).render3D(false));
+		dispatcher.addDispatch((new BlockModelGeneric<>(ModBlocks.SWITCH_CORE, BlockModelDispatcher.loadDataModel("theswitch:block/switch_core"))));
 	}
 }

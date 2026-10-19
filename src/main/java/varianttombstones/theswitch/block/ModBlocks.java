@@ -21,6 +21,7 @@ public class ModBlocks {
 	public static Block<?> FLESH;
 	public static Block<?> HEART_FLESH;
 	public static Block<?> DEAD_FLOWERS;
+	public static Block<?> SWITCH_CORE; // MAYBE RENAME AS HEART CORE?
 
 	public static void InitBlocks() {
 		LIVING_DIRT = new BlockBuilder(TheSwitch.MOD_ID)
@@ -85,6 +86,14 @@ public class ModBlocks {
 			.setBlockSound(BlockSounds.GRASS)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
 			.build("deadflowers", newBlockID(), b -> new BlockLogicFlowerStackable(b));
+
+		SWITCH_CORE = new BlockBuilder(TheSwitch.MOD_ID)
+			.setResistance(6f)
+			.setHardness(1.5f)
+			.setBlockSound(BlockSounds.GRAVEL)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
+			.build("switchcore", newBlockID(), b -> new BlockLogic(b, Materials.DIRT));
 	}
 
 	public static int newBlockID() {

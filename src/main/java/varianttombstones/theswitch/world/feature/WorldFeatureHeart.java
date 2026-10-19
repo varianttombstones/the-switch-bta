@@ -53,17 +53,18 @@ public class WorldFeatureHeart extends WorldFeature {
 			{
 				for (int positionY = -1; positionY <= height + 1; positionY++)
 				{
-					world.setBlockWithNotify(x + positionX, y + positionY, z + positionZ, Blocks.AIR.id());
+					TilePos blockTargetPosition = new TilePos(x + positionX, y + positionY, z + positionZ);
+					world.setBlockTypeNotify(blockTargetPosition, Blocks.AIR);
 					if (positionX == -1 || positionX == width + 1) {
-						world.setBlockWithNotify(x + positionX, y + positionY, z + positionZ, ModBlocks.FLESH.id());
+						world.setBlockTypeNotify(blockTargetPosition, ModBlocks.FLESH);
 					}
 
 					if (positionZ == -1 || positionZ == length + 1) {
-						world.setBlockWithNotify(x + positionX, y + positionY, z + positionZ, ModBlocks.FLESH.id());
+						world.setBlockTypeNotify(blockTargetPosition, ModBlocks.FLESH);
 					}
 
 					if (positionY == -1 || positionY == height + 1) {
-						world.setBlockWithNotify(x + positionX, y + positionY, z + positionZ, ModBlocks.FLESH.id());
+						world.setBlockTypeNotify(blockTargetPosition, ModBlocks.FLESH);
 					}
 				}
 			}
@@ -74,36 +75,43 @@ public class WorldFeatureHeart extends WorldFeature {
 	{
 		int widthQuarter = width / 4;
 		int lengthQuarter = length / 4;
-		int heightQuarter = height / 4;
 
-		int startHeight = heightQuarter;
+		int startHeight = 0;
 		Random random = new Random();
 
 		if (random.nextBoolean())
 		{
-			startHeight = 0;
-		} else {
 			startHeight = height / 2;
 		}
 
+		int endWidth = (width / 2) + widthQuarter;
+		int endLength = (length / 2) + lengthQuarter;
 		int endHeight = startHeight + (height / 2);
 
 		TilePos root = new TilePos(widthQuarter, startHeight, lengthQuarter);
 
-		for (int positionX = widthQuarter; positionX <= (width / 2) + widthQuarter; positionX++)
+		for (int positionX = widthQuarter; positionX <= endWidth; positionX++)
 		{
-			for (int positionZ = lengthQuarter; positionZ <= (length / 2) + lengthQuarter; positionZ++)
+			for (int positionZ = lengthQuarter; positionZ <= endLength; positionZ++)
 			{
 				for (int positionY = startHeight; positionY <= endHeight; positionY++)
 				{
 					TilePos tilePos = new TilePos(positionX, positionY, positionZ);
+					TilePos blockTargetPosition = new TilePos(x + positionX, y + positionY, z + positionZ);
 					if (!isHeartCorner(tilePos, width / 2, length / 2,
 						height / 2, root)) {
-						world.setBlockWithNotify(x + positionX, y + positionY, z + positionZ, ModBlocks.HEART_FLESH.id());
+						world.setBlockTypeNotify(blockTargetPosition, ModBlocks.HEART_FLESH);
 					}
 				}
 			}
 		}
+
+		// Place the core
+		int randomX = random.nextInt(widthQuarter + 1, endWidth);
+		int randomY = random.nextInt(startHeight, endHeight);
+		int randomZ = random.nextInt(lengthQuarter + 1, endLength);
+		TilePos corePosition = new TilePos(x + randomX, y + randomY, z + randomZ);
+		world.setBlockTypeNotify(corePosition, ModBlocks.SWITCH_CORE);
 	}
 
 	private boolean isHeartCorner(TilePos tilePos, int width, int length, int height, TilePos root)
