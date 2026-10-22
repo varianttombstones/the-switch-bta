@@ -1,11 +1,16 @@
 {
     "model_paths": [
-        "/assets/theswitch/models/entity/psychoticpig/psychoticpig.geo.json"
+        "/assets/theswitch/models/entity/psychoticpig.geo.json",
+        "/assets/theswitch/models/entity/psychoticcow.geo.json"
     ],
     "renderers": {
         "theswitch:psychoticpig": {
             "main":"geometry.pig",
             "saddle":{"model":"geometry.pig", "inflation": 0.5}
-        }
+        },
+      "theswitch:psychoticcow": {
+        "main":"geometry.cow",
+        "saddle":{"model":"geometry.cow", "inflation": 0.5}
+      }
     }
 }

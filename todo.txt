@@ -1,0 +1,10 @@
+Add a reason for the switch core to exist
+Spirits that can trick or treat
+The bucket for trick or treating - turns into a filled bucket that turns into an item on use
+Psycho cows
+Psycho sheep
+Pyscho deer for winter
+Ghoul Zombies
+Fix psycho animals spawning below ground
+Re-add base hostile mobs, maybe just for underground
+Switch exclusive items?

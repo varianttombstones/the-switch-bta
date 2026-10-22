@@ -29,6 +29,7 @@ public class MobPigMixin extends MobAnimal {
 		if (this.world.getBlockBiome(new TilePos(this.x, this.y, this.z)) == TheSwitch.THE_SWITCH_BIOME && !this.world.isClientSide) {
 			MobPsychoticPig psychoPig = new MobPsychoticPig(this.world);
 			psychoPig.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
+			psychoPig.setSkinVariant(this.getSkinVariant());
 			this.world.entityJoinedWorld(psychoPig);
 			this.remove();
 			if (this.passenger != null) {
