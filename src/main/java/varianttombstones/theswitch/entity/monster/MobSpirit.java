@@ -80,6 +80,7 @@ public class MobSpirit extends MobMonster {
 						}
 					} else {
 						((ItemTrickOrTreatBucket) itemstack.getItem()).filled = true;
+						remove();
 					}
 				}
 			}
