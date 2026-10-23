@@ -5,3 +5,31 @@ tile.theswitch.livingdirt.desc=It pulses under your feet and you can feel it bea
 
 tile.theswitch.livinggrass.name=Living Grass
 tile.theswitch.livinggrass.desc=It pulses under your feet and you can feel it beating.
+
+tile.theswitch.hauntedlog.name=Haunted Log
+tile.theswitch.hauntedlog.desc=A rotting wood, devoid of much color. I get the feeling something was inside it.
+
+tile.theswitch.seeinglog.name=Seeing Log
+tile.theswitch.seeinglog.desc=It's staring back at you..
+
+tile.theswitch.hauntedleaves.name=Haunted Leaves
+tile.theswitch.hauntedleaves.desc=Crunchy, dead leaves.
+
+tile.theswitch.deadflowers.name=Dead Flowers
+tile.theswitch.deadflowers.desc=All color has drained from these flowers.
+
+tile.theswitch.flesh.name=Flesh
+tile.theswitch.flesh.desc=It's slimey and dripping. It feels quite tensed.
+
+tile.theswitch.heartflesh.name=Heart Flesh
+tile.theswitch.heartflesh.desc=It throbs rythmically
+
+tile.theswitch.switchcore.name=Switch Core
+tile.theswitch.switchcore.desc=TEMP
+
+
+
+
+
+item.theswitch.trickortreatbucket.name=Trick or Treat Bucket
+item.theswitch.trickortreatbucket.desc=Used to try your luck with getting gifts from spirits!

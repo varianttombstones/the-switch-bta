@@ -1,13 +1,10 @@
 package varianttombstones.theswitch.entity.monster;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.monster.MobMonster;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
-import net.minecraft.core.item.tool.ItemToolShears;
-import net.minecraft.core.player.gamemode.Gamemode;
 import net.minecraft.core.player.gamemode.Gamemodes;
 import net.minecraft.core.util.helper.DamageType;
 import net.minecraft.core.util.helper.MathHelper;
