@@ -3,16 +3,23 @@ package varianttombstones.theswitch.entity.monster;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.entity.Entity;
+import net.minecraft.core.entity.Mob;
+import net.minecraft.core.entity.animal.MobPig;
+import net.minecraft.core.entity.factories.EntityFactory;
 import net.minecraft.core.entity.monster.MobMonster;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePos;
 import net.minecraft.core.world.season.Season;
 import net.minecraft.core.world.season.Seasons;
 import org.jetbrains.annotations.NotNull;
+import varianttombstones.theswitch.TheSwitch;
 
 public class MobAnimalPsychotic extends MobMonster
 {
+	protected EntityFactory<?> mentallyStableEntity;
+
 	public MobAnimalPsychotic(@NotNull World world) {
 		super(world);
 	}
@@ -35,6 +42,24 @@ public class MobAnimalPsychotic extends MobMonster
 			}
 		} else {
 			super.attackEntity(entity, distance);
+		}
+	}
+
+	protected void updateAI()
+	{
+		super.updateAI();
+		if (world.getBlockBiome(new TilePos(this.x, this.y, this.z)) != TheSwitch.THE_SWITCH_BIOME && !this.world.isClientSide) {
+			Mob stableMobInstance = (Mob) mentallyStableEntity.createEntity(this.world);
+			stableMobInstance.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
+			stableMobInstance.setHealthRaw(this.getHealth());
+			stableMobInstance.setSkinVariant(this.getSkinVariant());
+			this.world.entityJoinedWorld(stableMobInstance);
+			this.remove();
+
+
+			if (stableMobInstance instanceof MobPig && stableMobInstance.passenger != null) {
+				this.passenger.startRiding(stableMobInstance);
+			}
 		}
 	}
 

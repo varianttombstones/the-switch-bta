@@ -1,13 +1,10 @@
 package varianttombstones.theswitch.mixin.entity;
 
-import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.core.entity.Mob;
 import net.minecraft.core.entity.animal.MobAnimal;
 import net.minecraft.core.entity.animal.MobPig;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.pos.TilePos;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;

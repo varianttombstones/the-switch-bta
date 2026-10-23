@@ -2,6 +2,7 @@ package varianttombstones.theswitch.entity.monster;
 
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.entity.Entity;
+import net.minecraft.core.entity.EntityDispatcher;
 import net.minecraft.core.entity.animal.MobCow;
 import net.minecraft.core.entity.monster.MobMonster;
 import net.minecraft.core.entity.player.Player;
@@ -17,22 +18,11 @@ public class MobPsychoticCow extends MobAnimalPsychotic {
 
 	public MobPsychoticCow(@NotNull World world) {
 		super(world);
+		this.mentallyStableEntity = EntityDispatcher.getInstance().FACTORY_COW;
 
 		this.setTextureIdentifier("minecraft", "cow");
 		this.setSize(0.9F, 1.3F);
 		this.mobDrops.add(new WeightedRandomLootObject(Items.LEATHER.getDefaultStack(), 1, 5));
-	}
-
-	protected void updateAI()
-	{
-		super.updateAI();
-		if (world.getBlockBiome(new TilePos(this.x, this.y, this.z)) != TheSwitch.THE_SWITCH_BIOME && !this.world.isClientSide) {
-			MobCow cow = new MobCow(this.world);
-			cow.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
-			cow.setHealthRaw(this.getHealth());
-			this.world.entityJoinedWorld(cow);
-			this.remove();
-		}
 	}
 
 	public String getLivingSound() {

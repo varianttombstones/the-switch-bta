@@ -2,6 +2,7 @@ package varianttombstones.theswitch.entity.monster;
 
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.entity.Entity;
+import net.minecraft.core.entity.EntityDispatcher;
 import net.minecraft.core.entity.animal.MobPig;
 import net.minecraft.core.entity.monster.MobMonster;
 import net.minecraft.core.entity.monster.MobZombiePig;
@@ -21,27 +22,12 @@ public class MobPsychoticPig extends MobAnimalPsychotic {
 
 		this.setTextureIdentifier("minecraft", "pig");
 		this.setSize(0.9F, 0.9F);
+		this.mentallyStableEntity = EntityDispatcher.getInstance().FACTORY_PIG;
 
 		this.moveSpeed = 0.8F;
 		this.scoreValue = 200;
 		this.stepDownSize = 0.5F;
 		this.mobDrops.add(new WeightedRandomLootObject(Items.FOOD_PORKCHOP_RAW.getDefaultStack(), 1, 2));
-	}
-
-	protected void updateAI()
-	{
-		super.updateAI();
-		if (world.getBlockBiome(new TilePos(this.x, this.y, this.z)) != TheSwitch.THE_SWITCH_BIOME && !this.world.isClientSide) {
-			MobPig pig = new MobPig(this.world);
-			pig.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
-			pig.setHealthRaw(this.getHealth());
-			pig.setSkinVariant(this.getSkinVariant());
-			this.world.entityJoinedWorld(pig);
-			this.remove();
-			if (this.passenger != null) {
-				this.passenger.startRiding(pig);
-			}
-		}
 	}
 
 	public String getLivingSound() {

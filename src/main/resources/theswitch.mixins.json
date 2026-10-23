@@ -11,7 +11,10 @@
     "SurfaceGeneratorOverworldMixin",
     "WorldFeatureOreMixin",
     "block.logic.BlockLogicFlowerMixin",
+    "entity.MobCowMixin",
+    "entity.MobDeerMixin",
     "entity.MobPigMixin",
+    "entity.MobSheepMixin",
     "entity.MobWolfMixin"
   ],
   "client": [
