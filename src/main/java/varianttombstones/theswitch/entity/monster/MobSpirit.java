@@ -1,8 +1,14 @@
 package varianttombstones.theswitch.entity.monster;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.monster.MobMonster;
 import net.minecraft.core.entity.player.Player;
+import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.item.Items;
+import net.minecraft.core.item.tool.ItemToolShears;
+import net.minecraft.core.player.gamemode.Gamemode;
+import net.minecraft.core.player.gamemode.Gamemodes;
 import net.minecraft.core.util.helper.DamageType;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
@@ -11,9 +17,12 @@ import net.minecraft.core.world.weather.Weather;
 import net.minecraft.core.world.weather.Weathers;
 import org.jetbrains.annotations.NotNull;
 import varianttombstones.theswitch.TheSwitch;
+import varianttombstones.theswitch.item.ItemTrickOrTreatBucket;
+
+import java.util.Random;
 
 public class MobSpirit extends MobMonster {
-	private boolean aggro; // Needs to be updated so this saves.
+	private boolean hostile; // Needs to be updated so this saves.
 	public MobSpirit(@NotNull World world) {
 		super(world);
 		this.setTextureIdentifier("theswitch", "spirit");
@@ -45,7 +54,7 @@ public class MobSpirit extends MobMonster {
 	}
 
 	protected Entity findPlayerToAttack() {
-		if (aggro)
+		if (hostile)
 		{
 			Player entityplayer = this.world.getClosestPlayerToEntity(this, (double)16.0F);
 			return entityplayer != null && this.canEntityBeSeen(entityplayer) && entityplayer.getGamemode().hasHostileMobs() ? entityplayer : null;
@@ -54,14 +63,82 @@ public class MobSpirit extends MobMonster {
 		}
 	}
 
+	public boolean interact(@NotNull Player player) {
+		if (super.interact(player)) {
+			return true;
+		} else {
+			ItemStack itemstack = player.inventory.getCurrentItem();
+			if (itemstack != null && itemstack.getItem() instanceof ItemTrickOrTreatBucket && !this.hostile) {
+				if (!this.world.isClientSide) {
+					Random random = new Random();
+					if (random.nextBoolean())
+					{
+						if (player.gamemode != Gamemodes.CREATIVE)
+						{
+							hostile = true;
+							this.target = player;
+						}
+					} else {
+						((ItemTrickOrTreatBucket) itemstack.getItem()).filled = true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
 	public boolean hurt(Entity attacker, int i, DamageType type) {
+		if (!this.world.isClientSide) {
+			if (attacker != this) {
+				if (type == DamageType.FIRE || type == DamageType.COMBAT)
+				{
+					if (type == DamageType.COMBAT)
+					{
+						if (attacker instanceof Player)
+						{
+							int attackerWeaponID = ((Player) attacker).getCurrentEquippedItem().itemID;
+
+							if (attackerWeaponID != Items.TOOL_SWORD_GOLD.id)
+							{
+								return false;
+							}
+
+							if (attackerWeaponID != Items.TOOL_AXE_GOLD.id)
+							{
+								return false;
+							}
+
+							if (attackerWeaponID != Items.TOOL_SHOVEL_GOLD.id)
+							{
+								return false;
+							}
+
+							if (attackerWeaponID != Items.TOOL_PICKAXE_GOLD.id)
+							{
+								return false;
+							}
+
+							if (attackerWeaponID != Items.TOOL_HOE_GOLD.id)
+							{
+								return false;
+							}
+						}
+					}
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+
 		if (super.hurt(attacker, i, type)) {
 			if (this.passenger != attacker && this.vehicle != attacker) {
 				if (attacker != this) {
-					if (attacker instanceof Player) {
-						Player player = (Player)attacker;
+					if (attacker instanceof Player player) {
 						if (!player.gamemode.hasHostileMobs()) {
-							aggro = true;
+							hostile = true;
 							return true;
 						}
 					}
