@@ -7,5 +7,23 @@
       "ambient/weather/rain3.ogg",
       "ambient/weather/rain4.ogg"
     ]
+  },
+  "mob.spirit.vanish": {
+    "subtitle": "subtitles.mob.spirit.vanish",
+    "sounds": [
+      "entity/spirit/spirit_vanish.wav"
+    ]
+  },
+  "mob.spirit.death": {
+    "subtitle": "subtitles.mob.spirit.death",
+    "sounds": [
+      "entity/spirit/spirit_death.wav"
+    ]
+  },
+  "mob.spirit.speak": {
+    "subtitle": "subtitles.mob.spirit.speak",
+    "sounds": [
+      "entity/spirit/spirit_speak.wav"
+    ]
   }
 }

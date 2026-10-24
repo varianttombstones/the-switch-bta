@@ -6,6 +6,7 @@ import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.player.gamemode.Gamemodes;
+import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.DamageType;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
@@ -66,7 +67,7 @@ public class MobSpirit extends MobMonster {
 		} else {
 			ItemStack itemstack = player.inventory.getCurrentItem();
 			if (itemstack != null && itemstack.getItem() instanceof ItemTrickOrTreatBucket && !this.hostile) {
-				if (!this.world.isClientSide) {
+				if (!this.world.isClientSide && !((ItemTrickOrTreatBucket) itemstack.getItem()).filled) {
 					Random random = new Random();
 					if (random.nextBoolean())
 					{
@@ -77,6 +78,16 @@ public class MobSpirit extends MobMonster {
 						}
 					} else {
 						((ItemTrickOrTreatBucket) itemstack.getItem()).filled = true;
+						world.playSoundEffectAtTile(player, SoundCategory.ENTITY_SOUNDS, new TilePos(x, y, z),
+							"theswitch:mob.spirit.vanish", 1F, 1F);
+
+						for (int i = 0; i < 10; i++)
+						{
+							double posX = (double)x + random.nextDouble(-.25, .26);
+							double posZ = (double)z + random.nextDouble(-.25, .26);
+							world.spawnParticle("smoke", posX, y, posZ, 0, 0.5F, 0, 0, false);
+						}
+
 						remove();
 					}
 				}
@@ -97,27 +108,11 @@ public class MobSpirit extends MobMonster {
 						{
 							int attackerWeaponID = ((Player) attacker).getCurrentEquippedItem().itemID;
 
-							if (attackerWeaponID != Items.TOOL_SWORD_GOLD.id)
-							{
-								return false;
-							}
-
-							if (attackerWeaponID != Items.TOOL_AXE_GOLD.id)
-							{
-								return false;
-							}
-
-							if (attackerWeaponID != Items.TOOL_SHOVEL_GOLD.id)
-							{
-								return false;
-							}
-
-							if (attackerWeaponID != Items.TOOL_PICKAXE_GOLD.id)
-							{
-								return false;
-							}
-
-							if (attackerWeaponID != Items.TOOL_HOE_GOLD.id)
+							if (attackerWeaponID != Items.TOOL_SWORD_GOLD.id
+							&& attackerWeaponID != Items.TOOL_AXE_GOLD.id
+							&& attackerWeaponID != Items.TOOL_SHOVEL_GOLD.id
+							&& attackerWeaponID != Items.TOOL_PICKAXE_GOLD.id
+							&& attackerWeaponID != Items.TOOL_HOE_GOLD.id)
 							{
 								return false;
 							}
@@ -132,24 +127,30 @@ public class MobSpirit extends MobMonster {
 		}
 
 		if (super.hurt(attacker, i, type)) {
-			if (this.passenger != attacker && this.vehicle != attacker) {
-				if (attacker != this) {
-					if (attacker instanceof Player player) {
-						if (!player.gamemode.hasHostileMobs()) {
-							hostile = true;
-							return true;
-						}
+			if (attacker != this) {
+				if (attacker instanceof Player player) {
+					if (player.gamemode.hasHostileMobs()) {
+						hostile = true;
+						this.target = attacker;
 					}
-
-					this.target = attacker;
 				}
 
 				return true;
-			} else {
-				return true;
 			}
-		} else {
-			return false;
 		}
+
+		return false;
+	}
+
+	public String getLivingSound() {
+		return "theswitch:mob.spirit.speak";
+	}
+
+	protected String getHurtSound() {
+		return "theswitch:mob.spirit.speak";
+	}
+
+	protected String getDeathSound() {
+		return "theswitch:mob.spirit.death";
 	}
 }
