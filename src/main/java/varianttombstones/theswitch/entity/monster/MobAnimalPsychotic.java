@@ -53,13 +53,19 @@ public class MobAnimalPsychotic extends MobMonster
 			stableMobInstance.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
 			stableMobInstance.setHealthRaw(this.getHealth());
 			stableMobInstance.setSkinVariant(this.getSkinVariant());
+
+			if (this.hadNicknameSet)
+			{
+				stableMobInstance.setNickname(this.nickname);
+			}
+
+			if (stableMobInstance instanceof MobPig && this instanceof MobPsychoticPig)
+			{
+				((MobPig) stableMobInstance).setSaddled(((MobPsychoticPig) this).getSaddled());
+			}
+
 			this.world.entityJoinedWorld(stableMobInstance);
 			this.remove();
-
-
-			if (stableMobInstance instanceof MobPig && stableMobInstance.passenger != null) {
-				this.passenger.startRiding(stableMobInstance);
-			}
 		}
 	}
 

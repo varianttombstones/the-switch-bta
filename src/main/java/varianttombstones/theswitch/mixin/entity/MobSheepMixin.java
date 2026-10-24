@@ -24,10 +24,16 @@ public abstract class MobSheepMixin extends MobAnimal {
 	{
 		super.updateAI();
 		if (this.world.getBlockBiome(new TilePos(this.x, this.y, this.z)) == TheSwitch.THE_SWITCH_BIOME && !this.world.isClientSide) {
-			MobPsychoticSheep psychoCow = new MobPsychoticSheep(this.world);
-			psychoCow.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
-			psychoCow.setFleeceColor(this.getFleeceColor());
-			this.world.entityJoinedWorld(psychoCow);
+			MobPsychoticSheep psychoticSheep = new MobPsychoticSheep(this.world);
+			psychoticSheep.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
+			psychoticSheep.setFleeceColor(this.getFleeceColor());
+
+			if (this.hadNicknameSet)
+			{
+				psychoticSheep.setNickname(this.nickname);
+			}
+
+			this.world.entityJoinedWorld(psychoticSheep);
 			this.remove();
 		}
 	}

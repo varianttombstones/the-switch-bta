@@ -16,7 +16,7 @@ public class MobRendererPsychoticPig extends MobRendererQuadruped<MobPsychoticPi
 	protected void renderSpecials(@NotNull TessellatorGeneral tessellator, @NotNull MobPsychoticPig entity, double x, double y, double z) {
 		super.renderSpecials(tessellator, entity, x, y, z);
 	}
-	
+
 	public MobRendererPsychoticPig(float shadowSize) {
 		super(shadowSize);
 	}
@@ -25,7 +25,14 @@ public class MobRendererPsychoticPig extends MobRendererQuadruped<MobPsychoticPi
 		return entity.lookFadeAlpha < 0.9F ? 0.0F : super.getShadowSize(entity);
 	}
 	protected @Nullable StaticEntityModel getAndSetupModelForLayer(@NotNull MobPsychoticPig entity, float brightness, float partialTick, int layer) {
-		StaticEntityModel model = this.getModel("main");
+		StaticEntityModel model;
+		if (layer == 1) {
+			this.bindTexture("/assets/minecraft/textures/entity/saddle.png");
+			model = this.getModel("saddle");
+		} else {
+			model = this.getModel("main");
+		}
+
 		model.resetBones();
 		BoneTransform head = model.getTransform("head");
 		float bodyYaw = this.getBodyYaw(entity, partialTick);
@@ -43,5 +50,9 @@ public class MobRendererPsychoticPig extends MobRendererQuadruped<MobPsychoticPi
 		leg2.rotX = (MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbYaw);
 		leg3.rotX = (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbYaw);
 		return model;
+	}
+
+	protected int maxRenderLayer(@NotNull MobPsychoticPig entity) {
+		return entity.getSaddled() ? 1 : 0;
 	}
 }

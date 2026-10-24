@@ -10,12 +10,19 @@ public class ModItems {
 	public static int ITEM_ID = 992;
 
 	public static Item TRICK_OR_TREAT_BUCKET;
+	public static Item BLOOD_PEARL;
 
 	public static void InitItems() {
 		TRICK_OR_TREAT_BUCKET = new ItemBuilder(TheSwitch.MOD_ID)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.MISCELLANEOUS))
 			.build(new ItemTrickOrTreatBucket("trickortreatbucket",
 				"theswitch:item/trickortreatbucket",
+				newItemID()));
+
+		BLOOD_PEARL = new ItemBuilder(TheSwitch.MOD_ID)
+			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.MISCELLANEOUS))
+			.build(new ItemTrickOrTreatBucket("bloodpearl",
+				"theswitch:item/bloodpearl",
 				newItemID()));
 	}
 

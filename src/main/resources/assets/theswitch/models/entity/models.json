@@ -5,20 +5,17 @@
         "saddle":{"model":"geometry.pig", "inflation": 0.5}
       },
       "theswitch:psychoticcow": {
-        "main":"geometry.cow",
-        "saddle":{"model":"geometry.cow", "inflation": 0.5}
+        "main":"geometry.cow"
       },
       "theswitch:psychoticsheep": {
-        "main":"geometry.sheep",
-        "saddle":{"model":"geometry.sheep", "inflation": 0.5}
+        "main":"geometry.sheep.sheared",
+        "wool":"geometry.sheep.wool"
       },
       "theswitch:psychoticdeer": {
-        "main":"geometry.deer",
-        "saddle":{"model":"geometry.deer", "inflation": 0.5}
+        "main":"geometry.deer"
       },
       "theswitch:spirit": {
-        "main":"geometry.zombie",
-        "saddle":{"model":"geometry.zombie", "inflation": 0.5}
+        "main":"geometry.zombie"
       }
     }
 }

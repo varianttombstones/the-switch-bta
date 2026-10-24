@@ -1,4 +1,4 @@
-Add a reason for the switch core to exist X
+Add a reason for the switch core to exist /
 Spirits that can trick or treat /
 The bucket for trick or treating - turns into a filled bucket that turns into an item on use /
 Psycho cows /

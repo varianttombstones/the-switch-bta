@@ -9,10 +9,7 @@ import net.minecraft.core.world.weather.Weather;
 import net.minecraft.core.world.weather.Weathers;
 import org.jetbrains.annotations.NotNull;
 import varianttombstones.theswitch.block.ModBlocks;
-import varianttombstones.theswitch.entity.monster.MobPsychoticCow;
-import varianttombstones.theswitch.entity.monster.MobPsychoticDeer;
-import varianttombstones.theswitch.entity.monster.MobPsychoticPig;
-import varianttombstones.theswitch.entity.monster.MobPsychoticSheep;
+import varianttombstones.theswitch.entity.monster.*;
 import varianttombstones.theswitch.world.feature.WorldFeatureTreeHaunted;
 
 import java.util.Random;
@@ -46,10 +43,11 @@ public class TheSwitchBiome extends Biome {
 
 	private void addCreatures()
 	{
-		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticPig.class, 65));
-		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticCow.class, 65));
-		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticSheep.class, 65));
-		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticDeer.class, 10));
+		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticPig.class, 102));
+		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticCow.class, 102));
+		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticSheep.class, 102));
+		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticDeer.class, 20));
+		spawnableMonsterList.add(new SpawnListEntry(MobSpirit.class, 120));
 	}
 
 	@Override

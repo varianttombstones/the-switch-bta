@@ -22,6 +22,12 @@ public class MobCowMixin extends MobAnimal {
 			MobPsychoticCow psychoCow = new MobPsychoticCow(this.world);
 			psychoCow.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
 			psychoCow.setSkinVariant(this.getSkinVariant());
+
+			if (this.hadNicknameSet)
+			{
+				psychoCow.setNickname(this.nickname);
+			}
+
 			this.world.entityJoinedWorld(psychoCow);
 			this.remove();
 		}

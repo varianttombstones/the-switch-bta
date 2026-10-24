@@ -9,6 +9,7 @@ import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryCategory;
 import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryPlacement;
 import varianttombstones.theswitch.TheSwitch;
 import varianttombstones.theswitch.block.logic.BlockLogicFlesh;
+import varianttombstones.theswitch.block.logic.BlockLogicSwitchCore;
 
 public class ModBlocks {
 	private static int BLOCK_ID = 2344; // REPLACE ME TO NOT CONFLICT WITH BWF
@@ -78,7 +79,7 @@ public class ModBlocks {
 			.setBlockSound(BlockSounds.GRAVEL)
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
-			.build("heartflesh", newBlockID(), b -> new BlockLogic(b, Materials.DIRT));
+			.build("heartflesh", newBlockID(), b -> new BlockLogicFlesh(b, Materials.DIRT));
 
 		DEAD_FLOWERS = new BlockBuilder(TheSwitch.MOD_ID)
 			.setResistance(0f)
@@ -93,7 +94,7 @@ public class ModBlocks {
 			.setBlockSound(BlockSounds.GRAVEL)
 			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
-			.build("switchcore", newBlockID(), b -> new BlockLogic(b, Materials.DIRT));
+			.build("switchcore", newBlockID(), b -> new BlockLogicSwitchCore(b, Materials.DIRT));
 	}
 
 	public static int newBlockID() {

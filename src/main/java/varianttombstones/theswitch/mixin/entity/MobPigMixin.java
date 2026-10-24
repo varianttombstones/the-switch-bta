@@ -5,6 +5,7 @@ import net.minecraft.core.entity.animal.MobPig;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.pos.TilePos;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -12,7 +13,10 @@ import varianttombstones.theswitch.TheSwitch;
 import varianttombstones.theswitch.entity.monster.MobPsychoticPig;
 
 @Mixin(MobPig.class)
-public class MobPigMixin extends MobAnimal {
+public abstract class MobPigMixin extends MobAnimal {
+	@Shadow
+	public abstract boolean getSaddled();
+
 	public MobPigMixin(World world) {
 		super(world);
 	}
@@ -27,10 +31,17 @@ public class MobPigMixin extends MobAnimal {
 			MobPsychoticPig psychoPig = new MobPsychoticPig(this.world);
 			psychoPig.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
 			psychoPig.setSkinVariant(this.getSkinVariant());
+			psychoPig.setSaddled(this.getSaddled());
+
+			if (this.hadNicknameSet)
+			{
+				psychoPig.setNickname(this.nickname);
+			}
+
 			this.world.entityJoinedWorld(psychoPig);
 			this.remove();
-			if (this.passenger != null) {
-				this.passenger.startRiding(psychoPig);
+			if (psychoPig.passenger != null) {
+				psychoPig.ejectRider();
 			}
 		}
 	}
