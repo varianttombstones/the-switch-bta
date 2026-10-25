@@ -42,7 +42,7 @@ public class ChunkDecoratorOverworldMixin {
 		@Local(name="k4") int k4)
 	{
 		if (biome == TheSwitch.THE_SWITCH_BIOME) {
-			treeDensity += k4 + 25;
+			treeDensity += k4 + 15;
 		}
 
 		return treeDensity;

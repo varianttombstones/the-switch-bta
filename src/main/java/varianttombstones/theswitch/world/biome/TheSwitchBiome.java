@@ -18,11 +18,6 @@ public class TheSwitchBiome extends Biome {
 	public TheSwitchBiome(String key)
 	{
 		super(key);
-		this.spawnableMonsterList.clear();
-		this.spawnableCreatureList.clear();
-		this.spawnableWaterCreatureList.clear();
-		this.spawnableAmbientCreatureList.clear();
-
 		addCreatures();
 
 		this.withSurfaceProperties(new SurfaceProperties.Builder()
@@ -43,11 +38,18 @@ public class TheSwitchBiome extends Biome {
 
 	private void addCreatures()
 	{
-		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticPig.class, 102));
-		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticCow.class, 102));
-		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticSheep.class, 102));
-		spawnableCreatureList.add(new SpawnListEntry(MobPsychoticDeer.class, 20));
-		spawnableMonsterList.add(new SpawnListEntry(MobSpirit.class, 120));
+		/*
+		this.spawnableMonsterList.clear();
+		this.spawnableCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
+		this.spawnableAmbientCreatureList.clear();
+		 */
+
+		this.spawnableCreatureList.add(new SpawnListEntry(MobPsychoticPig.class, 102));
+		this.spawnableCreatureList.add(new SpawnListEntry(MobPsychoticCow.class, 102));
+		this.spawnableCreatureList.add(new SpawnListEntry(MobPsychoticSheep.class, 102));
+		this.spawnableCreatureList.add(new SpawnListEntry(MobPsychoticDeer.class, 20));
+		this.spawnableMonsterList.add(new SpawnListEntry(MobSpirit.class, 120));
 	}
 
 	@Override

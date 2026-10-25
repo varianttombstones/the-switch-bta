@@ -36,3 +36,9 @@ item.theswitch.trickortreatbucket.desc=Used to try your luck with getting gifts 
 
 item.theswitch.bloodpearl.name=Blood Pearl
 item.theswitch.bloodpearl.desc=TEMP
+
+subtitles.mob.spirit.speak="Spirit moams"
+subtitles.mob.spirit.hurt="Spirit dies"
+subtitles.mob.spirit.death="Spirit hurt"
+subtitles.mob.spirit.vanish="Spirit vanishes"
+subtitles.ambient.weather.bloodrain="Raining blood"

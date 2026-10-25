@@ -25,5 +25,11 @@
     "sounds": [
       "entity/spirit/spirit_speak.wav"
     ]
+  },
+  "mob.spirit.hurt": {
+    "subtitle": "subtitles.mob.spirit.hurt",
+    "sounds": [
+      "entity/spirit/spirit_hurt.wav"
+    ]
   }
 }

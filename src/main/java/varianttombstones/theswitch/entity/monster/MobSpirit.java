@@ -25,6 +25,7 @@ public class MobSpirit extends MobMonster {
 		super(world);
 		this.setTextureIdentifier("theswitch", "spirit");
 		this.moveSpeed = 0.3F;
+		this.attackStrength = 3;
 	}
 
 	public void onLivingUpdate() {
@@ -54,8 +55,8 @@ public class MobSpirit extends MobMonster {
 	protected Entity findPlayerToAttack() {
 		if (hostile)
 		{
-			Player entityplayer = this.world.getClosestPlayerToEntity(this, (double)16.0F);
-			return entityplayer != null && this.canEntityBeSeen(entityplayer) && entityplayer.getGamemode().hasHostileMobs() ? entityplayer : null;
+			Player entityplayer = world.getClosestPlayerToEntity(this, 16.0F);
+			return entityplayer != null && canEntityBeSeen(entityplayer) && entityplayer.getGamemode().hasHostileMobs() ? entityplayer : null;
 		} else {
 			return null;
 		}
@@ -67,7 +68,7 @@ public class MobSpirit extends MobMonster {
 		} else {
 			ItemStack itemstack = player.inventory.getCurrentItem();
 			if (itemstack != null && itemstack.getItem() instanceof ItemTrickOrTreatBucket && !this.hostile) {
-				if (!this.world.isClientSide && !((ItemTrickOrTreatBucket) itemstack.getItem()).filled) {
+				if (!world.isClientSide && !((ItemTrickOrTreatBucket) itemstack.getItem()).filled) {
 					Random random = new Random();
 					if (random.nextBoolean())
 					{
@@ -83,8 +84,8 @@ public class MobSpirit extends MobMonster {
 
 						for (int i = 0; i < 10; i++)
 						{
-							double posX = (double)x + random.nextDouble(-.25, .26);
-							double posZ = (double)z + random.nextDouble(-.25, .26);
+							double posX = x + random.nextDouble(-.25, .26);
+							double posZ = z + random.nextDouble(-.25, .26);
 							world.spawnParticle("smoke", posX, y, posZ, 0, 0.5F, 0, 0, false);
 						}
 
@@ -106,6 +107,11 @@ public class MobSpirit extends MobMonster {
 					{
 						if (attacker instanceof Player)
 						{
+							if (((Player) attacker).getCurrentEquippedItem() == null)
+							{
+								return false;
+							}
+
 							int attackerWeaponID = ((Player) attacker).getCurrentEquippedItem().itemID;
 
 							if (attackerWeaponID != Items.TOOL_SWORD_GOLD.id
@@ -147,10 +153,10 @@ public class MobSpirit extends MobMonster {
 	}
 
 	protected String getHurtSound() {
-		return "theswitch:mob.spirit.speak";
+		return "theswitch:mob.spirit.death";
 	}
 
 	protected String getDeathSound() {
-		return "theswitch:mob.spirit.death";
+		return "theswitch:mob.spirit.hurt";
 	}
 }
