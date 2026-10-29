@@ -9,5 +9,7 @@ public class ModItemsRenderer {
 	{
 		dispatcher.addDispatch(new ItemModelTrickOrTreatBucket(ModItems.TRICK_OR_TREAT_BUCKET));
 		dispatcher.addDispatch(new ItemModelStandard(ModItems.BLOOD_PEARL));
+		dispatcher.addDispatch(new ItemModelStandard(ModItems.SANITY_CHARM));
+		dispatcher.addDispatch(new ItemModelStandard(ModItems.ECTOPLASM));
 	}
 }

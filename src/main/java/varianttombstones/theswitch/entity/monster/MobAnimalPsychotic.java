@@ -49,23 +49,7 @@ public class MobAnimalPsychotic extends MobMonster
 	{
 		super.updateAI();
 		if (world.getBlockBiome(new TilePos(this.x, this.y, this.z)) != TheSwitch.THE_SWITCH_BIOME && !this.world.isClientSide) {
-			Mob stableMobInstance = (Mob) mentallyStableEntity.createEntity(this.world);
-			stableMobInstance.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
-			stableMobInstance.setHealthRaw(this.getHealth());
-			stableMobInstance.setSkinVariant(this.getSkinVariant());
-
-			if (this.hadNicknameSet)
-			{
-				stableMobInstance.setNickname(this.nickname);
-			}
-
-			if (stableMobInstance instanceof MobPig && this instanceof MobPsychoticPig)
-			{
-				((MobPig) stableMobInstance).setSaddled(((MobPsychoticPig) this).getSaddled());
-			}
-
-			this.world.entityJoinedWorld(stableMobInstance);
-			this.remove();
+			TransformSane();
 		}
 	}
 
@@ -90,5 +74,26 @@ public class MobAnimalPsychotic extends MobMonster
 		} else {
 			return currentSeason == Seasons.OVERWORLD_WINTER_ENDLESS ? 1 : 4;
 		}
+	}
+
+	public void TransformSane()
+	{
+		Mob stableMobInstance = (Mob) mentallyStableEntity.createEntity(this.world);
+		stableMobInstance.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
+		stableMobInstance.setHealthRaw(this.getHealth());
+		stableMobInstance.setSkinVariant(this.getSkinVariant());
+
+		if (this.hadNicknameSet)
+		{
+			stableMobInstance.setNickname(this.nickname);
+		}
+
+		if (stableMobInstance instanceof MobPig && this instanceof MobPsychoticPig)
+		{
+			((MobPig) stableMobInstance).setSaddled(((MobPsychoticPig) this).getSaddled());
+		}
+
+		this.world.entityJoinedWorld(stableMobInstance);
+		this.remove();
 	}
 }

@@ -39,16 +39,20 @@ public class TheSwitch implements ModInitializer {
 		CommonEvents.AFTER_GAME_START.listen(Key.of(MOD_ID), this::afterGameStart);
 		/*
 		CommonEvents.RECIPES_NAMESPACE_INIT.listen(Key.of(MOD_ID), this::initNamespaces);
-		CommonEvents.RECIPES_READY.listen(Key.of(MOD_ID), this::onRecipesReady);
 		*/
+		CommonEvents.RECIPES_READY.listen(Key.of(MOD_ID), this::onRecipesReady);
 		if (HalpLibe.isClient)
 		{
 			ClientEvents.ITEM_MODEL_RELOAD.listen(Key.of(MOD_ID), (t) -> ModItemsRenderer.RegisterRenderers(ItemModelDispatcher.getInstance()));
 			ClientEvents.BLOCK_MODEL_RELOAD.listen(Key.of(MOD_ID),(t)-> ModBlockRenderer.RegisterRenderers(BlockModelDispatcher.getInstance()));
 			ClientEvents.ENTITY_RENDERER_RELOAD.listen(Key.of(MOD_ID), ModEntityRenderer::RegisterRenderers);
-			ParticleDispatcher.getInstance().addDispatch("dripBlood", (world, x, y, z, motionX, motionY, motionZ, data) -> {
-			return new ParticleFluidDrip(world, x, y, z, 0xFF0000, TextureRegistry.getTexture("theswitch:block/blood/flowing"));
-		});
+			ParticleDispatcher.getInstance().addDispatch("dripBlood",
+				(world,
+				 x, y, z,
+				 motionX, motionY, motionZ,
+				 data)
+				-> new ParticleFluidDrip(world, x, y, z, 0xFF0000,
+				TextureRegistry.getTexture("theswitch:block/blood/flowing")));
 		}
 
 		LOGGER.info("The Switch initialized.");
@@ -68,5 +72,10 @@ public class TheSwitch implements ModInitializer {
 
 	public void afterGameStart() {
 
+	}
+
+	public void onRecipesReady()
+	{
+		ModRecipes.initializeRecipes();
 	}
 }

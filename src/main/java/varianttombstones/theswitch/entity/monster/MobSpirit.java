@@ -1,5 +1,6 @@
 package varianttombstones.theswitch.entity.monster;
 
+import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.monster.MobMonster;
 import net.minecraft.core.entity.player.Player;
@@ -16,6 +17,7 @@ import net.minecraft.core.world.weather.Weathers;
 import org.jetbrains.annotations.NotNull;
 import varianttombstones.theswitch.TheSwitch;
 import varianttombstones.theswitch.item.ItemTrickOrTreatBucket;
+import varianttombstones.theswitch.item.ModItems;
 
 import java.util.Random;
 
@@ -26,6 +28,7 @@ public class MobSpirit extends MobMonster {
 		this.setTextureIdentifier("theswitch", "spirit");
 		this.moveSpeed = 0.3F;
 		this.attackStrength = 3;
+		this.mobDrops.add(new WeightedRandomLootObject(new ItemStack(ModItems.ECTOPLASM), 0, 1));
 	}
 
 	public void onLivingUpdate() {

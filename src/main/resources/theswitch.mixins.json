@@ -20,6 +20,8 @@
   "client": [
     "FogManagerMixin",
     "WeatherManagerMixin",
-    "WorldRendererMixin"
+    "WorldRendererMixin",
+    "entity.renderers.MobRendererBipedArmoredMixin",
+    "entity.renderers.MobRendererPigMixin"
   ]
 }

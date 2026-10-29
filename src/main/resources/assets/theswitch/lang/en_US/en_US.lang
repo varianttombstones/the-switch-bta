@@ -22,10 +22,10 @@ tile.theswitch.flesh.name=Flesh
 tile.theswitch.flesh.desc=It's slimey and dripping. It feels quite tensed.
 
 tile.theswitch.heartflesh.name=Heart Flesh
-tile.theswitch.heartflesh.desc=It throbs rythmically
+tile.theswitch.heartflesh.desc=It throbs rythmically.
 
 tile.theswitch.switchcore.name=Switch Core
-tile.theswitch.switchcore.desc=TEMP
+tile.theswitch.switchcore.desc=A meaty mass of muscle, usually containing a blood pearl.
 
 
 
@@ -35,7 +35,13 @@ item.theswitch.trickortreatbucket.name=Trick or Treat Bucket
 item.theswitch.trickortreatbucket.desc=Used to try your luck with getting gifts from spirits!
 
 item.theswitch.bloodpearl.name=Blood Pearl
-item.theswitch.bloodpearl.desc=TEMP
+item.theswitch.bloodpearl.desc=A dense red pearl found within a heart of the switch.
+
+item.theswitch.sanitycharm.name=Sanity Charm
+item.theswitch.sanitycharm.desc=Protects saddled pigs from the switch's psychosis.
+
+item.theswitch.ectoplasm.name=Ectoplasm
+item.theswitch.ectoplasm.desc=The essence of someone who once was, in their most spiritual form.
 
 subtitles.mob.spirit.speak="Spirit moams"
 subtitles.mob.spirit.hurt="Spirit dies"

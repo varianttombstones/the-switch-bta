@@ -9,12 +9,16 @@ import net.minecraft.core.entity.animal.MobPig;
 import net.minecraft.core.entity.monster.MobMonster;
 import net.minecraft.core.entity.monster.MobZombiePig;
 import net.minecraft.core.entity.player.Player;
+import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.pos.TilePos;
 import org.jetbrains.annotations.NotNull;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import varianttombstones.theswitch.TheSwitch;
+import varianttombstones.theswitch.entity.SwitchPig;
+import varianttombstones.theswitch.item.ModItems;
 
 public class MobPsychoticPig extends MobAnimalPsychotic {
 	public float lookFadeAlpha = 1.0F;
@@ -67,10 +71,43 @@ public class MobPsychoticPig extends MobAnimalPsychotic {
 		this.setSaddled(tag.getBoolean("Saddle"));
 	}
 
+	public boolean interact(Player player) {
+		ItemStack heldItem = player.getHeldItem();
+		if (getSaddled()
+			&& heldItem != null && (heldItem.itemID == ModItems.SANITY_CHARM.id)) {
+			heldItem.stackSize -= 1;
+
+			if (heldItem.stackSize <= 0) {
+				player.setHeldItem(null);
+			}
+
+			MobPig pig = (MobPig) mentallyStableEntity.createEntity(this.world);
+			pig.moveTo(this.x, this.y, this.z, this.yRot, this.xRot);
+			pig.setHealthRaw(this.getHealth());
+			pig.setSkinVariant(this.getSkinVariant());
+
+			SwitchPig sPig = (SwitchPig) pig;
+			sPig.setSwitchProtectiveCharm(true);
+
+			if (this.hadNicknameSet)
+			{
+				pig.setNickname(this.nickname);
+			}
+
+			pig.setSaddled(this.getSaddled());
+
+			this.world.entityJoinedWorld(pig);
+			this.remove();
+			return true;
+		}
+
+		return false;
+	}
+
 
 	public String getLivingSound() {
-			return "mob.pig";
-		}
+		return "mob.pig";
+	}
 
 	protected String getHurtSound() {
 		return "mob.pig";
