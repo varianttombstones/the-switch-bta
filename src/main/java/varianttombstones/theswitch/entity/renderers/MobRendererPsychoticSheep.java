@@ -25,21 +25,19 @@ public class MobRendererPsychoticSheep extends MobRenderer<MobPsychoticSheep> {
 		int colorIndex = entity.getFleeceColor().blockMeta;
 		Color color = Colors.allSheepColors[colorIndex];
 		switch (layer) {
-			case 0:
 			default:
 				model = this.getModel("main");
 				break;
 			case 1:
 				GLRenderer.setColor3f(brightness * (float)color.getRed() / 255.0F, brightness * (float)color.getGreen() / 255.0F, brightness * (float)color.getBlue() / 255.0F);
 				model = this.getModel("main");
+				this.bindTexture("/assets/minecraft/textures/entity/sheep/wool_overlay.png");
 				break;
 			case 2:
 				GLRenderer.setColor3f(brightness * (float)color.getRed() / 255.0F, brightness * (float)color.getGreen() / 255.0F, brightness * (float)color.getBlue() / 255.0F);
 				model = this.getModel("wool");
-				break;
+				this.bindTexture("/assets/minecraft/textures/entity/sheep/wool_overlay.png");
 		}
-
-		this.bindTexture("/assets/minecraft/textures/entity/sheep/wool_overlay.png");
 
 		model.resetBones();
 		BoneTransform head = model.getTransform("head");

@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.useless.dragonfly.models.entity.StaticEntityModel;
+import varianttombstones.theswitch.item.ItemSanityAmulet;
 
 @Mixin(MobRendererBipedArmored.class)
 public class MobRendererBipedArmoredMixin<T extends Mob & IArmorWearing<HumanArmorShape>> extends MobRendererBiped<T> {
@@ -40,20 +41,10 @@ public class MobRendererBipedArmoredMixin<T extends Mob & IArmorWearing<HumanArm
 		ItemStack itemstack = entity.getItemInArmorSlot(HumanArmorShape.values()[layer - 1]);
 		assert itemstack != null;
 		Item item = itemstack.getItem();
-		if (item instanceof ItemQuiver) {
+		if (item instanceof ItemSanityAmulet) {
 			this.bindTexture("/assets/theswitch/textures/armor/sanitycharm.png");
 
-			StaticEntityModel model = null;
-			switch (layer) {
-				case 1 -> model = this.getModel("armor.helmet");
-				case 2 -> model = this.getModel("armor.chestplate");
-				case 3 -> model = this.getModel("armor.leggings");
-				case 4 -> model = this.getModel("armor.boots");
-				default -> {
-					cir.setReturnValue(null);
-				}
-			}
-
+			StaticEntityModel model = this.getModel("armor.chestplate");
 			cir.setReturnValue(this.setupAnimations(entity, model, partialTick, layer));
 		}
 	}

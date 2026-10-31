@@ -13,30 +13,40 @@ public class ModItems {
 	public static Item BLOOD_PEARL;
 	public static Item SANITY_CHARM;
 	public static Item ECTOPLASM;
+	public static Item GHOST_ORB;
 
 	public static void InitItems() {
 		TRICK_OR_TREAT_BUCKET = new ItemBuilder(TheSwitch.MOD_ID)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.MISCELLANEOUS))
+			.setStackSize(1)
 			.build(new ItemTrickOrTreatBucket("trickortreatbucket",
 				"theswitch:item/trickortreatbucket",
 				newItemID()));
 
 		BLOOD_PEARL = new ItemBuilder(TheSwitch.MOD_ID)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.MISCELLANEOUS))
+			.setStackSize(1)
 			.build(new Item("bloodpearl",
 				"theswitch:item/bloodpearl",
 				newItemID()));
 
 		SANITY_CHARM = new ItemBuilder(TheSwitch.MOD_ID)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.MISCELLANEOUS))
-			.build(new Item("sanitycharm",
-				"theswitch:item/sanitycharm",
+			.build(new ItemSanityAmulet("theswitch:item/sanitycharm",
+				"sanitycharm",
 				newItemID()));
 
 		ECTOPLASM = new ItemBuilder(TheSwitch.MOD_ID)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.MISCELLANEOUS))
-			.build(new ItemSanityAmulet("theswitch:item/ectoplasm",
-				"ectoplasm",
+			.build(new Item("ectoplasm",
+				"theswitch:item/ectoplasm",
+				newItemID()));
+
+		GHOST_ORB = new ItemBuilder(TheSwitch.MOD_ID)
+			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.MISCELLANEOUS))
+			.setStackSize(1)
+			.build(new ItemGhostOrb("theswitch:item/ghostorb",
+				"ghostorb",
 				newItemID()));
 	}
 

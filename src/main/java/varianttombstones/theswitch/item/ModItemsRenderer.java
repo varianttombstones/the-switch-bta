@@ -11,5 +11,6 @@ public class ModItemsRenderer {
 		dispatcher.addDispatch(new ItemModelStandard(ModItems.BLOOD_PEARL));
 		dispatcher.addDispatch(new ItemModelStandard(ModItems.SANITY_CHARM));
 		dispatcher.addDispatch(new ItemModelStandard(ModItems.ECTOPLASM));
+		dispatcher.addDispatch(new ItemModelStandard(ModItems.GHOST_ORB));
 	}
 }

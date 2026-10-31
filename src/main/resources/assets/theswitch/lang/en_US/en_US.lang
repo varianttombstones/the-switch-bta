@@ -43,7 +43,10 @@ item.theswitch.sanitycharm.desc=Protects saddled pigs from the switch's psychosi
 item.theswitch.ectoplasm.name=Ectoplasm
 item.theswitch.ectoplasm.desc=The essence of someone who once was, in their most spiritual form.
 
-subtitles.mob.spirit.speak="Spirit moams"
+item.theswitch.ghostorb.name=Ghost Orb
+item.theswitch.ghostorb.desc=Brings a friendly spirit back to this realm.
+
+subtitles.mob.spirit.speak="Spirit moans"
 subtitles.mob.spirit.hurt="Spirit dies"
 subtitles.mob.spirit.death="Spirit hurt"
 subtitles.mob.spirit.vanish="Spirit vanishes"

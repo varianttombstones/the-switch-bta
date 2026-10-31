@@ -20,5 +20,11 @@ public class ModRecipes {
 			.addInput('x', Items.BUCKET_IRON)
 			.addInput('y', ModItems.ECTOPLASM)
 			.create("trickortreatbucket", new ItemStack(ModItems.TRICK_OR_TREAT_BUCKET, 1));
+
+		RecipeBuilder.Shaped(TheSwitch.MOD_ID)
+			.setShape("yyy","yxy","yyy")
+			.addInput('x', ModItems.BLOOD_PEARL)
+			.addInput('y', ModItems.ECTOPLASM)
+			.create("ghostorb", new ItemStack(ModItems.GHOST_ORB, 1));
 	}
 }

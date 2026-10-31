@@ -1,5 +1,6 @@
 package varianttombstones.theswitch.entity.monster;
 
+import com.mojang.nbt.tags.CompoundTag;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.monster.MobMonster;
@@ -23,6 +24,8 @@ import java.util.Random;
 
 public class MobSpirit extends MobMonster {
 	private boolean hostile; // Needs to be updated so this saves.
+	private static final int DATA_PASSIVE_ID = 16;
+
 	public MobSpirit(@NotNull World world) {
 		super(world);
 		this.setTextureIdentifier("theswitch", "spirit");
@@ -47,7 +50,12 @@ public class MobSpirit extends MobMonster {
 
 		if (target != null)
 		{
-			this.moveSpeed = 0.7F;
+			if (target instanceof Player && getPassive())
+			{
+				setTarget(null);
+			} else {
+				this.moveSpeed = 0.7F;
+			}
 		} else {
 			this.moveSpeed = 0.3F;
 		}
@@ -56,7 +64,7 @@ public class MobSpirit extends MobMonster {
 	}
 
 	protected Entity findPlayerToAttack() {
-		if (hostile)
+		if (hostile && !getPassive())
 		{
 			Player entityplayer = world.getClosestPlayerToEntity(this, 16.0F);
 			return entityplayer != null && canEntityBeSeen(entityplayer) && entityplayer.getGamemode().hasHostileMobs() ? entityplayer : null;
@@ -75,10 +83,13 @@ public class MobSpirit extends MobMonster {
 					Random random = new Random();
 					if (random.nextBoolean())
 					{
-						if (player.gamemode != Gamemodes.CREATIVE)
+						if (!getPassive())
 						{
-							hostile = true;
-							this.target = player;
+							if (player.gamemode.hasHostileMobs())
+							{
+								hostile = true;
+								setTarget(player);
+							}
 						}
 					} else {
 						((ItemTrickOrTreatBucket) itemstack.getItem()).filled = true;
@@ -138,9 +149,12 @@ public class MobSpirit extends MobMonster {
 		if (super.hurt(attacker, i, type)) {
 			if (attacker != this) {
 				if (attacker instanceof Player player) {
-					if (player.gamemode.hasHostileMobs()) {
-						hostile = true;
-						this.target = attacker;
+					if (!getPassive())
+					{
+						if (player.gamemode.hasHostileMobs()) {
+							hostile = true;
+							setTarget(player);
+						}
 					}
 				}
 
@@ -149,6 +163,28 @@ public class MobSpirit extends MobMonster {
 		}
 
 		return false;
+	}
+
+	protected void defineSynchedData() {
+		this.entityData.define(DATA_PASSIVE_ID, (byte)0, Byte.class);
+	}
+
+	public boolean getPassive() {
+		return (this.entityData.getByte(DATA_PASSIVE_ID) & 1) != 0;
+	}
+
+	public void setPassive(boolean flag) {
+		this.entityData.set(DATA_PASSIVE_ID, (byte)(flag ? 1 : 0));
+	}
+
+	public void addAdditionalSaveData(@NotNull CompoundTag tag) {
+		super.addAdditionalSaveData(tag);
+		tag.putBoolean("Passive", this.getPassive());
+	}
+
+	public void readAdditionalSaveData(@NotNull CompoundTag tag) {
+		super.readAdditionalSaveData(tag);
+		this.setPassive(tag.getBoolean("Passive"));
 	}
 
 	public String getLivingSound() {
