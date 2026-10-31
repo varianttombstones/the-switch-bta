@@ -79,7 +79,7 @@ public class MobSpirit extends MobMonster {
 		} else {
 			ItemStack itemstack = player.inventory.getCurrentItem();
 			if (itemstack != null && itemstack.getItem() instanceof ItemTrickOrTreatBucket && !this.hostile) {
-				if (!world.isClientSide && !((ItemTrickOrTreatBucket) itemstack.getItem()).filled) {
+				if (!world.isClientSide && !itemstack.getData().getBoolean("Filled")) {
 					Random random = new Random();
 					if (random.nextBoolean())
 					{
@@ -92,7 +92,7 @@ public class MobSpirit extends MobMonster {
 							}
 						}
 					} else {
-						((ItemTrickOrTreatBucket) itemstack.getItem()).filled = true;
+						itemstack.getData().putBoolean("Filled", true);
 						world.playSoundEffectAtTile(player, SoundCategory.ENTITY_SOUNDS, new TilePos(x, y, z),
 							"theswitch:mob.spirit.vanish", 1F, 1F);
 

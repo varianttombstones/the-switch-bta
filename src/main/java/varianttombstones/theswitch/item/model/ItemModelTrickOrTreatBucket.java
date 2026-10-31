@@ -20,6 +20,6 @@ public class ItemModelTrickOrTreatBucket extends ItemModelStandard {
 
 	public @NotNull IconCoordinate getIcon(@Nullable Entity entity, @NotNull ItemStack itemStack) {
 		ItemTrickOrTreatBucket bucket = (ItemTrickOrTreatBucket) itemStack.getItem();
-		return bucket.filled ? this.full : this.empty;
+		return itemStack.getData().getBoolean("Filled") ? this.full : this.empty;
 	}
 }
