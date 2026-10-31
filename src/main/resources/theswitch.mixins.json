@@ -7,7 +7,7 @@
   },
   "mixins": [
     "BiomeProviderOverworldMixin",
-    "ChunkDecoratorOverworldMixin",=
+    "ChunkDecoratorOverworldMixin",
     "SurfaceGeneratorOverworldMixin",
     "WorldFeatureOreMixin",
     "block.logic.BlockLogicFlowerMixin",
@@ -19,6 +19,8 @@
   ],
   "client": [
     "FogManagerMixin",
+    "MainMenuBackgroundMixin",
+    "ScreenMainMenuMixin",
     "WeatherManagerMixin",
     "WorldRendererMixin",
     "entity.renderers.MobRendererBipedArmoredMixin",

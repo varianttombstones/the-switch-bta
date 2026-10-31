@@ -1,8 +1,10 @@
 package varianttombstones.theswitch;
 
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import turniplabs.halplibe.helper.RecipeBuilder;
+import varianttombstones.theswitch.block.ModBlocks;
 import varianttombstones.theswitch.item.ModItems;
 
 public class ModRecipes {
@@ -26,5 +28,16 @@ public class ModRecipes {
 			.addInput('x', ModItems.BLOOD_PEARL)
 			.addInput('y', ModItems.ECTOPLASM)
 			.create("ghostorb", new ItemStack(ModItems.GHOST_ORB, 1));
+
+		RecipeBuilder.Shaped(TheSwitch.MOD_ID)
+			.setShape("x")
+			.addInput('x', ModBlocks.HAUNTED_LOG)
+			.create("wood", new ItemStack(Blocks.PLANKS_OAK_PAINTED, 4));
+
+		RecipeBuilder.Shaped(TheSwitch.MOD_ID)
+			.setShape("x")
+			.addInput('x', ModBlocks.SEEING_LOG)
+			.create("wood2", new ItemStack(Blocks.PLANKS_OAK_PAINTED, 4));
+
 	}
 }
