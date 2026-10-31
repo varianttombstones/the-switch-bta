@@ -29,7 +29,7 @@ public class ModBlocks {
 			.setResistance(.5f)
 			.setHardness(.5f)
 			.setBlockSound(BlockSounds.GRAVEL)
-			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.GROWS_TREES, BlockTags.GROWS_FLOWERS)
+			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.GROWS_TREES, BlockTags.GROWS_FLOWERS, BlockTags.PASSIVE_MOBS_SPAWN)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
 			.build("livingdirt", newBlockID(), b -> new BlockLogic(b, Materials.DIRT));
 
@@ -37,7 +37,7 @@ public class ModBlocks {
 			.setResistance(.5f)
 			.setHardness(.5f)
 			.setBlockSound(BlockSounds.GRAVEL)
-			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.GROWS_TREES, BlockTags.GROWS_FLOWERS)
+			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.GROWS_TREES, BlockTags.GROWS_FLOWERS, BlockTags.PASSIVE_MOBS_SPAWN)
 			.setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
 			.build("livinggrass", newBlockID(), b -> new BlockLogic(b, Materials.GRASS));
 
